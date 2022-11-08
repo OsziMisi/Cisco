@@ -1,60 +1,5 @@
 Sw2 Sanyi
 
-Alap config:
-
-ena
-clock set 12:00:00 04 nov 2022
-conf t
-host Sw2
-no ip domain-lookup
-ena sec class123
-line con 0
-pass cisco123
-login
-logg syn
-exec 5
-exit
-
-line vty 0 15
-pass cisco123
-login
-logg syn
-exec 5
-exit
-
-ser pass
-banner motd "Privat!"
-int vlan1
-ip add 192.168.100.2 255.255.255.0
-no sh
-exit
-
-sdm pref du def
-
-ip default-ga 192.168.100.1
-exit
-int f0/1
-duplex full
-speed 100
-exit
-
-int f0/2
-duplex full
-speed 100
-exit
-
-int f0/12
-duplex full
-speed 100
-exit
-
-int f0/13
-duplex full
-speed 100
-end
-
-copy run st
-
 Vlan Config:
 
 ena
@@ -65,40 +10,40 @@ ena sec class123
 no ip domain-lookup
 bann motd "Privat!"
 
-int rang f0/1
+vlan 10
+name Fokirodaja
+vlan 20
+name Raktar
+vlan 30
+name JMirodaja
+vlan 40
+name Kolesz
+exit
+
+int rang f0/1-6
+switch mod acc
+switch acc vlan 10
+exit
+
+int rang f0/7-12
 switch mod acc
 switch acc vlan 20
 exit
-vlan 20
-name Fokirodaja
+
+
+int rang f0/13-18
+switch mod acc
+switch acc vlan 30
 exit
 
-int rang f0/2
+int rang f0/19-24
 switch mod acc
-switch acc vlan 20
-exit
-vlan 20
-name Fokirodaja
+switch acc vlan 40
 exit
 
-int rang f0/12
-switch mod acc
-switch acc vlan 50
-exit
-vlan 50
-name JMirodaja
-exit
-
-int rang f0/13
-switch mod acc
-switch acc vlan 50
-exit
-vlan 50
-name JMirodaja
-exit
 
 int g0/2
 switch mod trunk
 switch trunk nati vlan 99
-switch trunk allo vlan 20,50,99
+switch trunk allo vlan 10,20,30,40,99
 exit
