@@ -10,19 +10,15 @@ ena sec class123
 no ip domain-lookup
 bann motd "Privat!"
 
-vlan 10
-name Fokirodaja
 vlan 20
 name Raktar
-vlan 30
-name JMirodaja
-vlan 40
-name Kolesz
+vlan 50
+name Iskola
 exit
 
 int rang f0/1-6
 switch mod acc
-switch acc vlan 10
+switch acc vlan 20
 exit
 
 int rang f0/7-12
@@ -33,17 +29,24 @@ exit
 
 int rang f0/13-18
 switch mod acc
-switch acc vlan 30
+switch acc vlan 50
 exit
 
 int rang f0/19-24
 switch mod acc
-switch acc vlan 40
+switch acc vlan 50
 exit
 
 
 int g0/2
 switch mod trunk
 switch trunk nati vlan 99
-switch trunk allo vlan 10,20,30,40,99
+switch trunk allo vlan 20,50,99
+exit
+
+
+int g0/1
+switch mod trunk
+switch trunk nati vlan 99
+switch trunk allo vlan 20,50,99
 exit
