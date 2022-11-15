@@ -16,6 +16,6 @@
 - SW alapkonfig S1,S2 Sanyi,
 - SW alapkonfig S3, S4 Csanád,
 - SW alapkonfig S5,6 Misi,
-- SW vlan100 alapkonfig Sanyi,
-- SW vlan200 alapkonfig Csanád,
-- SW vlan300 alapkonfig Misi
+- Vlan100 alapkonfig Sanyi,
+- Vlan200 alapkonfig Csanád,
+- Vlan300 alapkonfig Misi
