@@ -1,52 +1,199 @@
-Sw2 Sanyi
+S1 Sanyi
 
 Vlan Config:
 
 ena
-clock set 12:00:00 04 nov 2022
+clock set 18:30 19 may 2022
 conf t
-host Sw2
+host S1
 ena sec class123
 no ip domain-lookup
-bann motd "Privat!"
+line con 0
+pass cisco123
+login
+logg syn
+exec 5
+exit
+line vty 0 15
+pass cisco123
+login
+exec 5
+exit
+ser pass
+banner motd "Privat!"
+int vlan1
+sdm prefer dual-ipv4-and-ipv6 default
+exit
+ip domain-name cisco.com
+crypto key generate rsa
+2048
+username rg secret cisco123
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+copy running-config startup-config
 
+vlan 10
+name Markolo
 vlan 20
 name Raktar
-vlan 50
-name Iskola
+vlan 30
+name Vezetoseg
 exit
 
-int rang f0/1-6
+int rang f0/1-1
+switch mod acc
+switch acc vlan 10
+exit
+
+int rang f0/2-8
+switch mod acc
+switch acc vlan 10
+exit
+
+int rang f0/9-9
 switch mod acc
 switch acc vlan 20
 exit
 
-int rang f0/7-12
+int rang f0/10-24
 switch mod acc
 switch acc vlan 20
 exit
 
 
-int rang f0/13-18
-switch mod acc
-switch acc vlan 50
-exit
-
-int rang f0/19-24
-switch mod acc
-switch acc vlan 50
-exit
-
-
-int g0/2
+int f0/24
 switch mod trunk
 switch trunk nati vlan 99
-switch trunk allo vlan 20,50,99
+switch trunk allo vlan 10,20,30,99
 exit
 
+S2 Sanyi
+
+ena
+clock set 18:30 19 may 2022
+conf t
+host S2
+ena sec class123
+no ip domain-lookup
+line con 0
+pass cisco123
+login
+logg syn
+exec 5
+exit
+line vty 0 15
+pass cisco123
+login
+exec 5
+exit
+ser pass
+banner motd "Privat!"
+int vlan1
+sdm prefer dual-ipv4-and-ipv6 default
+exit
+ip domain-name cisco.com
+crypto key generate rsa
+2048
+username rg secret cisco123
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+copy running-config startup-config
+
+vlan 10
+name Markolo
+vlan 20
+name Raktar
+vlan 30
+name vezetoseg
+exit
+
+int rang f0/17-17
+switch mod acc
+switch acc vlan 30
+exit
+
+int rang f0/18-24
+switch mod acc
+switch acc vlan 30
+exit
 
 int g0/1
 switch mod trunk
 switch trunk nati vlan 99
-switch trunk allo vlan 20,50,99
+switch trunk allo vlan 10,30,20,99
+exit
+
+R1 Sanyi
+
+ena
+clock set 18:30 19 may 2022
+conf t
+host "név"
+security passwords min-length "szám"
+login block-for "mennyi idõre" attempts "lehetõségek száma" within "mennyi idõn belül"
+ena sec "jelszó" class123
+no ip domain-lookup
+line con 0
+pass "jelszó" (cisco123)
+login
+logg syn
+exec 5
+exit
+line vty 0 15
+pass cisco123
+login
+exec 5
+exit
+ser pass
+banner motd "Ez egy privat router!"
+int gig 0/0
+ip add 172.16.10.1 255.255.255.0
+des pesti router
+ipv6 address 2001:db8:acad:a::1/64
+ipv6 address fe80::1 link-local
+no sh
+exit
+ipv6 unicast-routing
+ip domain-name cisco.com
+crypto key generate rsa
+2048
+username rg secret cisco123
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+copy running-config startup-config
+
+vlan 10
+name Markolo
+vlan 20
+name Raktar
+vlan 30
+name vezetoseg
+exit
+
+int rang f0/17-17
+switch mod acc
+switch acc vlan 30
+exit
+
+int rang f0/18-24
+switch mod acc
+switch acc vlan 30
+exit
+
+int g0/1
+switch mod trunk
+switch trunk nati vlan 99
+switch trunk allo vlan 10,30,20,99
 exit
