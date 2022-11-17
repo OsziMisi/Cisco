@@ -1,0 +1,374 @@
+ena
+clock set 21:00 17 nov 2022
+conf t
+host S8
+ena sec class123
+no ip domain-lookup
+line con 0
+pass cisco123
+login
+logg syn
+exec 5
+exit
+line vty 0 15
+pass cisco123
+login
+exec 5
+exit
+ser pass
+banner motd "Mein private Gerat!"
+ip domain-name cisco.com
+crypto key generate rsa
+2048
+username rg secret cisco123
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+copy running-config startup-config
+
+
+
+conf t
+vl 10
+name Markolo
+vl 20
+name Raktar
+vl 30
+name Vezetoseg
+
+int r f0/1-6
+swi mod acc
+swi acc vl 30
+int r f0/7-12
+swi mod acc
+swi acc vl 30
+int r f0/13-18
+swi mod acc
+swi acc vl 20
+int r f0/19-24
+swi mod acc
+swi acc vl 20
+
+int gig0/1
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+exit
+end
+copy running-config startup-config
+
+
+sw7
+ena
+clock set 21:00 17 nov 2022
+conf t
+host S7
+ena sec class123
+no ip domain-lookup
+banner motd "Mein private Gerat!"
+end
+copy running-config startup-config
+
+
+
+conf t
+vl 10
+name Markolo
+vl 20
+name Raktar
+vl 30
+name Vezetoseg
+
+int r f0/1-6
+swi mod acc
+swi acc vl 30
+int r f0/7-12
+swi mod acc
+swi acc vl 30
+int r f0/13-18
+swi mod acc
+swi acc vl 20
+int r f0/19-24
+swi mod acc
+swi acc vl 20
+
+int gig0/1
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+exit
+end
+copy running-config startup-config
+
+
+int gig0/2
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+
+
+
+s6
+ena
+clock set 21:43 17 nov 2022
+conf t
+host S6
+ena sec class123
+no ip domain-lookup
+banner motd "Mein private Gerat!"
+end
+copy running-config startup-config
+
+
+
+conf t
+vl 10
+name Markolo
+vl 20
+name Raktar
+vl 30
+name Vezetoseg
+
+int r f0/1-6
+swi mod acc
+swi acc vl 20
+int r f0/7-12
+swi mod acc
+swi acc vl 20
+int r f0/13-18
+swi mod acc
+swi acc vl 10
+int r f0/19-24
+swi mod acc
+swi acc vl 10
+
+int gig0/1
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+exit
+end
+copy running-config startup-config
+
+
+
+S5
+
+conf t
+vl 10
+name Markolo
+vl 20
+name Raktar
+vl 30
+name Vezetoseg
+
+int r f0/1-12
+swi mod acc
+swi acc vl 30
+int r f0/13-24
+swi mod acc
+swi acc vl 30
+
+
+int gig0/1
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+
+int Fa0/24
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+exit
+end
+copy running-config startup-config
+
+
+
+s4
+
+conf t
+vl 10
+name Markolo
+vl 20
+name Raktar
+vl 30
+name Vezetoseg
+
+int r f0/1-12
+swi mod acc
+swi acc vl 30
+int r f0/13-24
+swi mod acc
+swi acc vl 30
+
+
+int gig0/2
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+
+exit
+end
+copy running-config startup-config
+
+
+
+s2
+
+conf t
+vl 10
+name Markolo
+vl 20
+name Raktar
+vl 30
+name Vezetoseg
+
+int r f0/1-12
+swi mod acc
+swi acc vl 30
+int r f0/13-24
+swi mod acc
+swi acc vl 30
+
+
+int gig0/1
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+
+int gig0/2
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+
+exit
+end
+copy running-config startup-config
+
+
+R4
+
+ena
+clock set 21:43 17 nov 2022
+conf t
+host R4
+ena sec class123
+no ip domain-lookup
+banner motd "Mein private Gerat!"
+
+int g0/0.10
+enc dot 10
+des sw7 fele
+ip add 192.168.10.1 255.255.255.0
+exit
+
+int g0/0.20
+enc dot 20
+ip add 192.168.20.1 255.255.255.0
+des sw7 fele
+exit
+
+int g0/0.30
+enc dot 30
+ip add 192.168.30.1 255.255.255.0
+des sw7 fele
+exit
+
+int g0/1
+no sh
+exit
+
+ballab
+
+int g0/0.0
+enc dot 10
+des sw7 fele
+ip add 192.168.10.1 255.255.255.0
+exit
+
+int g0/0.20
+enc dot 20
+ip add 192.168.20.1 255.255.255.0
+des sw7 fele
+exit
+
+int g0/0.30
+enc dot 30
+ip add 192.168.30.1 255.255.255.0
+des sw7 fele
+exit
+
+
+int g0/1
+no sh
+exit
+
+R3 config
+
+ena
+clock set 21:43 17 nov 2022
+conf t
+host R3
+ena sec class123
+no ip domain-lookup
+banner motd "Mein private Gerat!"
+
+int g0/0.10
+enc dot 10
+des R2 fele
+ip add 192.168.11.1 255.255.255.0
+exit
+
+int g0/0.20
+enc dot 20
+ip add 192.168.21.1 255.255.255.0
+des R2 fele
+exit
+
+int g0/0.30
+enc dot 30
+ip add 192.168.31.1 255.255.255.0
+des R2 fele
+exit
+
+int g0/1
+no sh
+exit
+
+int Fa0/0/0
+swi mod trunk
+swi trunk nat vl 99
+swi trunk allo vl 10,20,30,99
+
+ballab
+
+int g0/0.0
+enc dot 10
+des sw7 fele
+ip add 192.168.10.1 255.255.255.0
+exit
+
+int g0/0.20
+enc dot 20
+ip add 192.168.20.1 255.255.255.0
+des sw7 fele
+exit
+
+int g0/0.30
+enc dot 30
+ip add 192.168.30.1 255.255.255.0
+des sw7 fele
+exit
+
+
+int g0/1
+no sh
+exit
+
+
+
+
