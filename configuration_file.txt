@@ -199,3 +199,80 @@ exit
 int g0/0
 no sh
 exit
+
+
+R2
+
+ena
+clock set 21:43 17 nov 2022
+conf t
+host R2
+ena sec class123
+no ip domain-lookup
+banner motd "This is a private device!"
+
+int f0/0.10
+enc dot 10
+des R1 fele
+ip add 192.168.10.1 255.255.255.0
+exit
+
+int g0/0.20
+enc dot 20
+ip add 192.168.20.1 255.255.255.0
+des S3 fele
+exit
+
+int g0/0.30
+enc dot 30
+ip add 192.168.30.1 255.255.255.0
+des S3 fele
+exit
+
+int f0/1
+no sh
+exit
+
+int g0/0.0
+enc dot 10
+des S3 fele
+ip add 192.168.10.1 255.255.255.0
+exit
+
+int g0/0.20
+enc dot 20
+ip add 192.168.20.1 255.255.255.0
+des S3 fele
+exit
+
+int g0/0.30
+enc dot 30
+ip add 192.168.30.1 255.255.255.0
+des S3 fele
+exit
+
+
+int f0/1
+no sh
+
+
+int f1/0.0
+enc dot 10
+des S3 fele
+ip add 192.168.10.1 255.255.255.0
+exit
+
+int f1/0.20
+enc dot 20
+ip add 192.168.20.1 255.255.255.0
+des S3 fele
+exit
+
+int f1/0.30
+enc dot 30
+ip add 192.168.30.1 255.255.255.0
+des S3 fele
+exit
+
+int f1/0
+no sh
