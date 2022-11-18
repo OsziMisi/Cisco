@@ -251,6 +251,7 @@ copy running-config startup-config
 
 
 R4
+jobbag 
 
 ena
 clock set 21:43 17 nov 2022
@@ -260,50 +261,51 @@ ena sec class123
 no ip domain-lookup
 banner motd "Mein private Gerat!"
 
-int g0/0.10
+int Fa0/0.10
 enc dot 10
 des sw7 fele
 ip add 192.168.10.1 255.255.255.0
 exit
 
-int g0/0.20
+int Fa0/0.20
 enc dot 20
 ip add 192.168.20.1 255.255.255.0
 des sw7 fele
 exit
 
-int g0/0.30
+int Fa0/0.30
 enc dot 30
 ip add 192.168.30.1 255.255.255.0
 des sw7 fele
 exit
 
-int g0/1
+int Fa0/0
 no sh
 exit
 
+
 ballab
 
-int g0/0.0
+int Fa0/1.10
 enc dot 10
-des sw7 fele
-ip add 192.168.10.1 255.255.255.0
+des R3 fele
+ip add 192.168.11.1 255.255.255.0
 exit
 
-int g0/0.20
+int Fa0/1.20
 enc dot 20
-ip add 192.168.20.1 255.255.255.0
-des sw7 fele
+ip add 192.168.21.1 255.255.255.0
+des R3 fele
 exit
 
-int g0/0.30
+int Fa0/1.30
 enc dot 30
-ip add 192.168.30.1 255.255.255.0
-des sw7 fele
+ip add 192.168.31.1 255.255.255.0
+des R3 fele
 exit
 
 
-int g0/1
+int Fa0/1
 no sh
 exit
 
